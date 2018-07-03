@@ -1586,6 +1586,10 @@ releases:
   url: https://bosh.io/d/github.com/cloudfoundry/binary-buildpack-release?v=1.0.21
   version: 1.0.21
   sha1: 4721a43418533ac13d7d5e9ca179b8aec42218cb
+- name: bpm
+  url: https://bosh.io/d/github.com/cloudfoundry-incubator/bpm-release?v=0.8.0
+  version: 0.8.0
+  sha1: 0cf53162bb246de6afb4c1eaf14becdb7865a217
 - name: capi
   url: https://bosh.io/d/github.com/cloudfoundry/capi-release?v=1.61.0
   version: 1.61.0
@@ -1662,6 +1666,10 @@ releases:
   url: https://bosh.io/d/github.com/cloudfoundry/ruby-buildpack-release?v=1.7.19
   version: 1.7.19
   sha1: 07d3353f5ab9af26be10790f0a440dee2ae7a643
+- name: silk
+  url: https://bosh.io/d/github.com/cloudfoundry/silk-release?v=2.7.0
+  version: 2.7.0
+  sha1: 35170e87762004c7013eb2ec0ac76eedd3624ad4
 - name: staticfile-buildpack
   url: https://bosh.io/d/github.com/cloudfoundry/staticfile-buildpack-release?v=1.4.28
   version: 1.4.28
@@ -1674,6 +1682,10 @@ releases:
   url: https://bosh.io/d/github.com/cloudfoundry/uaa-release?v=60
   version: 60
   sha1: a7c14357ae484e89e547f4f207fb8de36d2b0966
+- name: loggregator-agent
+  url: https://bosh.io/d/github.com/cloudfoundry/loggregator-agent-release?v=1.0
+  version: "1.0"
+  sha1: aa70e3bc95e25fe86ab00f3b698216a24a44c9d5
 stemcells:
 - alias: default
   os: ubuntu-trusty
