@@ -286,22 +286,20 @@ instance_groups:
   - name: silk-controller
     release: silk
     properties:
-      cf_networking:
-        silk_controller:
-          ca_cert: ((silk_ca.certificate))
-          server_cert: ((silk_controller.certificate))
-          server_key: ((silk_controller.private_key))
-          database:
-            type: mysql
-            username: network_connectivity
-            password: ((network_connectivity_database_password))
-            host: sql-db.service.cf.internal
-            port: 3306
-            name: network_connectivity
-        silk_daemon:
-          ca_cert: ((silk_ca.certificate))
-          client_cert: ((silk_daemon.certificate))
-          client_key: ((silk_daemon.private_key))
+      ca_cert: ((silk_ca.certificate))
+      server_cert: ((silk_controller.certificate))
+      server_key: ((silk_controller.private_key))
+      database:
+        type: mysql
+        username: network_connectivity
+        password: ((network_connectivity_database_password))
+        host: sql-db.service.cf.internal
+        port: 3306
+        name: network_connectivity
+      silk_daemon:
+        ca_cert: ((silk_ca.certificate))
+        client_cert: ((silk_daemon.certificate))
+        client_key: ((silk_daemon.private_key))
   - name: locket
     release: diego
     properties:
@@ -754,25 +752,21 @@ instance_groups:
   - name: policy-server
     release: cf-networking
     properties:
-      cf_networking:
-        policy_server:
-          uaa_client_secret: ((uaa_clients_network_policy_secret))
-          uaa_ca: ((uaa_ca.certificate))
-          database:
-            type: mysql
-            username: network_policy
-            password: ((network_policy_database_password))
-            host: sql-db.service.cf.internal
-            port: 3306
-            name: network_policy
+      uaa_client_secret: ((uaa_clients_network_policy_secret))
+      uaa_ca: ((uaa_ca.certificate))
+      database:
+        type: mysql
+        username: network_policy
+        password: ((network_policy_database_password))
+        host: sql-db.service.cf.internal
+        port: 3306
+        name: network_policy
   - name: policy-server-internal
     release: cf-networking
     properties:
-      cf_networking:
-        policy_server_internal:
-          ca_cert: ((network_policy_ca.certificate))
-          server_cert: ((network_policy_server.certificate))
-          server_key: ((network_policy_server.private_key))
+      ca_cert: ((network_policy_ca.certificate))
+      server_cert: ((network_policy_server.certificate))
+      server_key: ((network_policy_server.private_key))
   - name: cc_uploader
     release: capi
     properties:
@@ -1165,19 +1159,16 @@ instance_groups:
   - name: vxlan-policy-agent
     release: silk
     properties:
-      cf_networking:
-        vxlan_policy_agent:
-          ca_cert: ((network_policy_ca.certificate))
-          client_cert: ((network_policy_client.certificate))
-          client_key: ((network_policy_client.private_key))
+      ca_cert: ((network_policy_ca.certificate))
+      client_cert: ((network_policy_client.certificate))
+      client_key: ((network_policy_client.private_key))
   - name: silk-daemon
     release: silk
     properties:
-      cf_networking:
-        silk_daemon:
-          ca_cert: ((silk_ca.certificate))
-          client_cert: ((silk_daemon.certificate))
-          client_key: ((silk_daemon.private_key))
+      silk_daemon:
+        ca_cert: ((silk_ca.certificate))
+        client_cert: ((silk_daemon.certificate))
+        client_key: ((silk_daemon.private_key))
   - name: silk-cni
     release: silk
 - name: log-api
@@ -1476,7 +1467,7 @@ variables:
     common_name: statsdinjector
     extended_key_usage:
     - client_auth
-- name: loggregator_tls_metron
+- name: loggregator_tls_agent
   type: certificate
   options:
     ca: loggregator_ca

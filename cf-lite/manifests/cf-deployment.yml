@@ -219,26 +219,24 @@ instance_groups:
   - name: silk-controller
     release: silk
     properties:
-      cf_networking:
-        silk_controller:
-          ca_cert: ((silk_ca.certificate))
-          debug_port: 46455 # port exposed
-          health_check_port: 19683 # port exposed
-          listen_port: 4103 # port exposed
-          metron_port: 3457 # port exposed
-          server_cert: ((silk_controller.certificate))
-          server_key: ((silk_controller.private_key))
-          database:
-            type: mysql
-            username: network_connectivity
-            password: ((network_connectivity_database_password))
-            host: sql-db.service.cf.internal
-            port: 3306
-            name: network_connectivity
-        silk_daemon:
-          ca_cert: ((silk_ca.certificate))
-          client_cert: ((silk_daemon.certificate))
-          client_key: ((silk_daemon.private_key))
+      ca_cert: ((silk_ca.certificate))
+      debug_port: 46455 # port exposed
+      health_check_port: 19683 # port exposed
+      listen_port: 4103 # port exposed
+      metron_port: 3457 # port exposed
+      server_cert: ((silk_controller.certificate))
+      server_key: ((silk_controller.private_key))
+      database:
+        type: mysql
+        username: network_connectivity
+        password: ((network_connectivity_database_password))
+        host: sql-db.service.cf.internal
+        port: 3306
+        name: network_connectivity
+      silk_daemon:
+        ca_cert: ((silk_ca.certificate))
+        client_cert: ((silk_daemon.certificate))
+        client_key: ((silk_daemon.private_key))
   - name: locket
     release: diego
     properties:
@@ -767,38 +765,34 @@ instance_groups:
   - name: policy-server
     release: cf-networking
     properties:
-      cf_networking:
-        policy_server:
-          debug_port: 31821 # port exposed
-          listen_ip: 0.0.0.0 # port exposed
-          listen_port: 4002 # port exposed
-          uaa_hostname: uaa.service.cf.internal # port exposed
-          uaa_port: 8443 # port exposed
-          uaa_client_secret: ((uaa_clients_network_policy_secret))
-          uaa_ca: ((uaa_ca.certificate))
-          cc_hostname: cloud-controller-ng.service.cf.internal # port exposed
-          cc_port: 9022 # port exposed
-          metron_port: 3457 # port exposed
-          database:
-            type: mysql
-            username: network_policy
-            password: ((network_policy_database_password))
-            host: sql-db.service.cf.internal
-            port: 3306
-            name: network_policy
+      debug_port: 31821 # port exposed
+      listen_ip: 0.0.0.0 # port exposed
+      listen_port: 4002 # port exposed
+      uaa_hostname: uaa.service.cf.internal # port exposed
+      uaa_port: 8443 # port exposed
+      uaa_client_secret: ((uaa_clients_network_policy_secret))
+      uaa_ca: ((uaa_ca.certificate))
+      cc_hostname: cloud-controller-ng.service.cf.internal # port exposed
+      cc_port: 9022 # port exposed
+      metron_port: 3457 # port exposed
+      database:
+        type: mysql
+        username: network_policy
+        password: ((network_policy_database_password))
+        host: sql-db.service.cf.internal
+        port: 3306
+        name: network_policy
   - name: policy-server-internal
     release: cf-networking
     properties:
-      cf_networking:
-        policy_server_internal:
-          listen_ip: 0.0.0.0 # port exposed
-          debug_port: 31945 # port exposed
-          health_check_port: 31946 # port exposed
-          internal_listen_port: 4003 # port exposed
-          metron_port: 3457 # port exposed
-          ca_cert: ((network_policy_ca.certificate))
-          server_cert: ((network_policy_server.certificate))
-          server_key: ((network_policy_server.private_key))
+      listen_ip: 0.0.0.0 # port exposed
+      debug_port: 31945 # port exposed
+      health_check_port: 31946 # port exposed
+      internal_listen_port: 4003 # port exposed
+      metron_port: 3457 # port exposed
+      ca_cert: ((network_policy_ca.certificate))
+      server_cert: ((network_policy_server.certificate))
+      server_key: ((network_policy_server.private_key))
   - name: cc_uploader
     release: capi
     properties:
@@ -1104,30 +1098,26 @@ instance_groups:
   - name: vxlan-policy-agent
     release: silk
     properties:
-      cf_networking:
-        policy_server:
-          hostname: "policy-server.service.cf.internal" # port exposed
-          internal_listen_port: 4003 # port exposed
-        vxlan_policy_agent:
-          metron_port: 3457 # port exposed
-          debug_server_port: 44151 # port exposed
-          ca_cert: ((network_policy_ca.certificate))
-          client_cert: ((network_policy_client.certificate))
-          client_key: ((network_policy_client.private_key))
+      policy_server:
+        hostname: "policy-server.service.cf.internal" # port exposed
+        internal_listen_port: 4003 # port exposed
+      metron_port: 3457 # port exposed
+      debug_server_port: 44151 # port exposed
+      ca_cert: ((network_policy_ca.certificate))
+      client_cert: ((network_policy_client.certificate))
+      client_key: ((network_policy_client.private_key))
   - name: silk-daemon
     release: silk
     properties:
-      cf_networking:
         disable: false
         vtep_port: 4789 # port exposed
         rep_listen_addr_admin: 127.0.0.1:1800 # port exposed
-        silk_daemon:
-          listen_port: 23954 # port exposed
-          debug_port: 22233 # port exposed
-          metron_port: 3457 # port exposed
-          ca_cert: ((silk_ca.certificate))
-          client_cert: ((silk_daemon.certificate))
-          client_key: ((silk_daemon.private_key))
+        listen_port: 23954 # port exposed
+        debug_port: 22233 # port exposed
+        metron_port: 3457 # port exposed
+        ca_cert: ((silk_ca.certificate))
+        client_cert: ((silk_daemon.certificate))
+        client_key: ((silk_daemon.private_key))
         silk_controller:
           hostname: "silk-controller.service.cf.internal" # port exposed
           listen_port: 4103 # port exposed
@@ -1421,7 +1411,7 @@ variables:
     common_name: statsdinjector
     extended_key_usage:
     - client_auth
-- name: loggregator_tls_metron
+- name: loggregator_tls_agent
   type: certificate
   options:
     ca: loggregator_ca
