@@ -41,6 +41,10 @@ PROTECTED_SETTINGS
   tags {
     environment = "${var.prefix}-bosh"
   }
+
+  timeouts {
+    create = "2h"
+  } 
 }
 
 # output "kubo_subnet" {
