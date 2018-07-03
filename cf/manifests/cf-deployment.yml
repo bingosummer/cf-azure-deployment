@@ -1157,10 +1157,13 @@ instance_groups:
         client_secret: "((uaa_clients_tcp_emitter_secret))"
   - name: garden-cni
     release: cf-networking
+    properties:
+      cni_plugin_dir: /var/vcap/packages/silk-cni/bin
+      cni_config_dir: /var/vcap/jobs/silk-cni/config/cni
   - name: netmon
-    release: cf-networking
+    release: silk
   - name: vxlan-policy-agent
-    release: cf-networking
+    release: silk
     properties:
       cf_networking:
         vxlan_policy_agent:
@@ -1168,15 +1171,15 @@ instance_groups:
           client_cert: ((network_policy_client.certificate))
           client_key: ((network_policy_client.private_key))
   - name: silk-daemon
-    release: cf-networking
+    release: silk
     properties:
       cf_networking:
         silk_daemon:
           ca_cert: ((silk_ca.certificate))
           client_cert: ((silk_daemon.certificate))
           client_key: ((silk_daemon.private_key))
-  - name: cni
-    release: cf-networking
+  - name: silk-cni
+    release: silk
 - name: log-api
   azs:
   - z1

@@ -1096,13 +1096,13 @@ instance_groups:
   - name: garden-cni
     release: cf-networking
   - name: netmon
-    release: cf-networking
+    release: silk
     properties:
       cf_networking:
         netmon:
           metron_address: 127.0.0.1:3457 # port exposed
   - name: vxlan-policy-agent
-    release: cf-networking
+    release: silk
     properties:
       cf_networking:
         policy_server:
@@ -1115,7 +1115,7 @@ instance_groups:
           client_cert: ((network_policy_client.certificate))
           client_key: ((network_policy_client.private_key))
   - name: silk-daemon
-    release: cf-networking
+    release: silk
     properties:
       cf_networking:
         disable: false
@@ -1131,8 +1131,8 @@ instance_groups:
         silk_controller:
           hostname: "silk-controller.service.cf.internal" # port exposed
           listen_port: 4103 # port exposed
-  - name: cni
-    release: cf-networking
+  - name: silk-cni
+    release: silk
     properties:
       cf_networking:
         disable: false
